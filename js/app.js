@@ -3,6 +3,7 @@ function getRandomArbitrary(min, max, avg) {
 }
 
 var Seattle = {
+  name: 'Seattle',
   minCustomer: 23,
   maxCustomer: 65,
   avgCookie: 6.3,
@@ -18,7 +19,9 @@ var Seattle = {
   render: function() {
     this.randomCustomers();
     var totale = 0;
-    var ul = document.getElementById('seattle');
+    var body = document.getElementsByTagName('body');
+    var artical = document.createElement('article');
+    var ul = document.createElement('ul');
     for (let index = 0; index < this.cookiesPurchased.length; index++) {
       var time = index === 6 ? 'pm' : 'am';
       var hour = (index + 6) % 12 === 0 ? 12 : (index + 6) % 12;
@@ -30,10 +33,17 @@ var Seattle = {
     li = document.createElement('li');
     li.textContent = `Total: ${totale} cookies`;
     ul.appendChild(li);
+    var h2 = document.createElement('h2');
+    h2.textContent = this.name;
+    artical.appendChild(h2);
+    artical.appendChild(ul);
+    // console.log(body)
+    body[0].appendChild(artical);
   }
 };
 
 var Tokyo = {
+  name: 'Tokyo',
   minCustomer: 3,
   maxCustomer: 24,
   avgCookie: 1.2,
@@ -48,7 +58,9 @@ var Tokyo = {
   render: function() {
     this.randomCustomers();
     var totale = 0;
-    var ul = document.getElementById('tokyo');
+    var body = document.getElementsByTagName('body');
+    var artical = document.createElement('article');
+    var ul = document.createElement('ul');
     for (let index = 0; index < this.cookiesPurchased.length; index++) {
       var time = index === 6 ? 'pm' : 'am';
       var hour = (index + 6) % 12 === 0 ? 12 : (index + 6) % 12;
@@ -60,10 +72,17 @@ var Tokyo = {
     li = document.createElement('li');
     li.textContent = `Total: ${totale} cookies`;
     ul.appendChild(li);
+    var h2 = document.createElement('h2');
+    h2.textContent = this.name;
+    artical.appendChild(h2);
+    artical.appendChild(ul);
+    // console.log(body)
+    body[0].appendChild(artical);
   }
 };
 
 var Dubai = {
+  name: 'Dubai',
   minCustomer: 11,
   maxCustomer: 38,
   avgCookie: 3.7,
@@ -78,7 +97,9 @@ var Dubai = {
   render: function() {
     this.randomCustomers();
     var totale = 0;
-    var ul = document.getElementById('dubai');
+    var body = document.getElementsByTagName('body');
+    var artical = document.createElement('article');
+    var ul = document.createElement('ul');
     for (let index = 0; index < this.cookiesPurchased.length; index++) {
       var time = index === 6 ? 'pm' : 'am';
       var hour = (index + 6) % 12 === 0 ? 12 : (index + 6) % 12;
@@ -90,10 +111,17 @@ var Dubai = {
     li = document.createElement('li');
     li.textContent = `Total: ${totale} cookies`;
     ul.appendChild(li);
+    var h2 = document.createElement('h2');
+    h2.textContent = this.name;
+    artical.appendChild(h2);
+    artical.appendChild(ul);
+    // console.log(body)
+    body[0].appendChild(artical);
   }
 };
 
 var Paris = {
+  name: 'Paris',
   minCustomer: 20,
   maxCustomer: 38,
   avgCookie: 2.3,
@@ -108,7 +136,9 @@ var Paris = {
   render: function() {
     this.randomCustomers();
     var totale = 0;
-    var ul = document.getElementById('paris');
+    var body = document.getElementsByTagName('body');
+    var artical = document.createElement('article');
+    var ul = document.createElement('ul');
     for (let index = 0; index < this.cookiesPurchased.length; index++) {
       var time = index === 6 ? 'pm' : 'am';
       var hour = (index + 6) % 12 === 0 ? 12 : (index + 6) % 12;
@@ -120,10 +150,17 @@ var Paris = {
     li = document.createElement('li');
     li.textContent = `Total: ${totale} cookies`;
     ul.appendChild(li);
+    var h2 = document.createElement('h2');
+    h2.textContent = this.name;
+    artical.appendChild(h2);
+    artical.appendChild(ul);
+    // console.log(body)
+    body[0].appendChild(artical);
   }
 };
 
 var Lima = {
+  name: 'Lima',
   minCustomer: 2,
   maxCustomer: 16,
   avgCookie: 4.6,
@@ -138,7 +175,9 @@ var Lima = {
   render: function() {
     this.randomCustomers();
     var totale = 0;
-    var ul = document.getElementById('lima');
+    var body = document.getElementsByTagName('body');
+    var artical = document.createElement('article');
+    var ul = document.createElement('ul');
     for (let index = 0; index < this.cookiesPurchased.length; index++) {
       var time = index === 6 ? 'pm' : 'am';
       var hour = (index + 6) % 12 === 0 ? 12 : (index + 6) % 12;
@@ -150,9 +189,14 @@ var Lima = {
     li = document.createElement('li');
     li.textContent = `Total: ${totale} cookies`;
     ul.appendChild(li);
+    var h2 = document.createElement('h2');
+    h2.textContent = this.name;
+    artical.appendChild(h2);
+    artical.appendChild(ul);
+    // console.log(body)
+    body[0].appendChild(artical);
   }
 };
-
 Seattle.render();
 Tokyo.render();
 Dubai.render();
