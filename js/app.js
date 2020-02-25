@@ -1,3 +1,4 @@
+'use strict';
 function getRandomArbitrary(min, max, avg) {
   return Math.floor((Math.random() * (max - min) + min) * avg);
 }
@@ -52,7 +53,6 @@ Loction.prototype.randomCustomers = function() {
   for (let index = 0; index < timeTotal.length; index++) {
     this.cookies.push(getRandomArbitrary(this.min, this.max, this.avg));
   }
-  console.table(this.cookies);
 };
 Loction.prototype.render = function() {
   this.randomCustomers();
