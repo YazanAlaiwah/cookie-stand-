@@ -21,7 +21,7 @@ var timeTotal = [
   ['7pm', 0]
 ];
 
-(function() {
+function head() {
   var div = document.getElementById('sales-tabel');
   var tabel = document.createElement('table');
   tabel.setAttribute('id', 'tabel');
@@ -40,7 +40,8 @@ var timeTotal = [
   tr.appendChild(th);
   tabel.appendChild(tr);
   div.appendChild(tabel);
-})();
+}
+head();
 
 function Loction(name, min, max, avg) {
   this.total = 0;
@@ -52,8 +53,12 @@ function Loction(name, min, max, avg) {
   this.cookies = [];
 }
 Loction.prototype.randomCustomers = function() {
-  for (let index = 0; index < timeTotal.length; index++) {
-    this.cookies.push(getRandomArbitrary(this.min, this.max, this.avg));
+  if (this.cookies.length === 14) {
+    null;
+  } else {
+    for (let index = 0; index < timeTotal.length; index++) {
+      this.cookies.push(getRandomArbitrary(this.min, this.max, this.avg));
+    }
   }
 };
 Loction.prototype.render = function() {
@@ -64,6 +69,7 @@ Loction.prototype.render = function() {
   td.textContent = this.name;
   tr.appendChild(td);
   for (let index = 0; index < this.cookies.length; index++) {
+    // console.log(timeTotal[index], this.cookies.length);
     timeTotal[index][1] += this.cookies[index];
     td = document.createElement('td');
     td.textContent = this.cookies[index];
@@ -82,13 +88,17 @@ new Loction('Tokyo', 3, 24, 1.2);
 new Loction('Dubai', 11, 38, 3.7);
 new Loction('Paris', 20, 38, 2.3);
 new Loction('Lima', 2, 16, 4.6);
-for (let i = 0; i < shops.length; i++) {
-  shops[i].render();
+function main() {
+  for (let i = 0; i < shops.length; i++) {
+    shops[i].render();
+  }
 }
+main();
 
-(function() {
+function footer() {
   var tabel = document.getElementById('tabel');
   var tr = document.createElement('tr');
+  tr.setAttribute('id', 'footer');
   var td = document.createElement('td');
   td.textContent = 'total';
   tr.appendChild(td);
@@ -101,4 +111,18 @@ for (let i = 0; i < shops.length; i++) {
   td.textContent = totalTotal;
   tr.appendChild(td);
   tabel.appendChild(tr);
-})();
+}
+footer();
+
+var x = document.getElementById('form');
+x.addEventListener('submit', function(e) {
+  e.preventDefault();
+  var loction = e.target.loction.value;
+  var min = e.target.min.value;
+  var max = e.target.max.value;
+  var avg = e.target.avg.value;
+  new Loction(loction, min, max, avg).render();
+  var tb = document.getElementById('footer');
+  tb.parentNode.removeChild(tb);
+  footer();
+});
