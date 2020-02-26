@@ -2,6 +2,7 @@
 function getRandomArbitrary(min, max, avg) {
   return Math.floor((Math.random() * (max - min) + min) * avg);
 }
+var shops = [];
 var totalTotal = 0;
 var timeTotal = [
   ['6am', 0],
@@ -47,6 +48,7 @@ function Loction(name, min, max, avg) {
   this.min = min;
   this.max = max;
   this.avg = avg;
+  shops.push(this);
   this.cookies = [];
 }
 Loction.prototype.randomCustomers = function() {
@@ -74,16 +76,15 @@ Loction.prototype.render = function() {
   tr.appendChild(td);
   tabel.appendChild(tr);
 };
-var Seattle = new Loction('Seattle', 23, 65, 6.3);
-Seattle.render();
-var Tokyo = new Loction('Tokyo', 3, 24, 1.2);
-Tokyo.render();
-var Dubai = new Loction('Dubai', 11, 38, 3.7);
-Dubai.render();
-var Paris = new Loction('Paris', 20, 38, 2.3);
-Paris.render();
-var Lima = new Loction('Lima', 2, 16, 4.6);
-Lima.render();
+
+new Loction('Seattle', 23, 65, 6.3);
+new Loction('Tokyo', 3, 24, 1.2);
+new Loction('Dubai', 11, 38, 3.7);
+new Loction('Paris', 20, 38, 2.3);
+new Loction('Lima', 2, 16, 4.6);
+for (let i = 0; i < shops.length; i++) {
+  shops[i].render();
+}
 
 (function() {
   var tabel = document.getElementById('tabel');
