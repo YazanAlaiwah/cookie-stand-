@@ -89,6 +89,9 @@ new Loction('Dubai', 11, 38, 3.7);
 new Loction('Paris', 20, 38, 2.3);
 new Loction('Lima', 2, 16, 4.6);
 function main() {
+  var x = document.getElementById('tabel');
+  x.parentNode.removeChild(x);
+  head();
   for (let i = 0; i < shops.length; i++) {
     shops[i].render();
   }
@@ -113,16 +116,61 @@ function footer() {
   tabel.appendChild(tr);
 }
 footer();
-
-var x = document.getElementById('form');
-x.addEventListener('submit', function(e) {
+function addtr(loction, min, max, avg) {
+  new Loction(loction, min, max, avg);
+  main();
+  var tb = document.getElementById('footer');
+  if (tb) {
+    tb.parentNode.removeChild(tb);
+    footer();
+  }
+  footer();
+}
+var add = document.getElementById('form');
+add.addEventListener('submit', function(e) {
   e.preventDefault();
   var loction = e.target.loction.value;
   var min = e.target.min.value;
   var max = e.target.max.value;
   var avg = e.target.avg.value;
-  new Loction(loction, min, max, avg).render();
-  var tb = document.getElementById('footer');
-  tb.parentNode.removeChild(tb);
-  footer();
+
+  addtr(loction, min, max, avg);
 });
+var update = document.getElementById('update');
+update.addEventListener('submit', function(e) {
+  e.preventDefault();
+  var eventLoction = e.target;
+  var indexLoction;
+  for (let index = 0; index < shops.length; index++) {
+    if (eventLoction.originloction.value === shops[index].name) {
+      console.log(eventLoction);
+      var loc = eventLoction.updateloction.value;
+      var min = Number(eventLoction.updatemin.value);
+      var max = Number(eventLoction.updatemax.value);
+      var avg = Number(eventLoction.updateavg.value);
+      console.log(typeof avg)
+      if (
+        loc !== shops[index].name ||
+        min !== shops[index].min ||
+        max !== shops[index].max ||
+        avg !== shops[index].avg
+      ) {
+        indexLoction = index;
+        shops.splice(indexLoction, 1);
+        addtr(loc, min, max, avg);
+        // console.log('shops');
+        break;
+      } else {
+        alert('nothing change!');
+      }
+    }
+    console.log(indexLoction);
+  }
+  if (indexLoction === undefined) {
+    alert('the loction dose not exisist');
+  }
+  console.log(shops);
+  // indexLoction
+});
+// console.log(shops[0].name = 'blas')
+// console.log(shops[0].name )

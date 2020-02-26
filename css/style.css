@@ -1,6 +1,7 @@
-body {
+body , html {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 ul {
   list-style: unset;
@@ -59,4 +60,27 @@ i {
   height: 100px;
   /* z-index: 0; */
   background: black;
+}
+form{
+  width: 80%;
+  margin: auto;
+}
+fieldset{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content:center;
+}
+fieldset div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+fieldset input{
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center;
+  align-items: center; */
+  margin: auto;
 }
