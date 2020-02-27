@@ -1,9 +1,13 @@
 'use strict';
+// this function to have random cookies
 function getRandomArbitrary(min, max, avg) {
   return Math.floor((Math.random() * (max - min) + min) * avg);
 }
+// array to have the shops
 var shops = [];
+// variabel to sum all the cookies
 var totalTotal = 0;
+// array for the open time
 var timeTotal = [
   ['6am', 0],
   ['7am', 0],
@@ -21,15 +25,19 @@ var timeTotal = [
   ['7pm', 0]
 ];
 
+// this function to bulid the header of table
 function head() {
+  // call id of my div
   var div = document.getElementById('sales-tabel');
   var tabel = document.createElement('table');
+  // set id to my table
   tabel.setAttribute('id', 'tabel');
   var tr = document.createElement('tr');
   var th = document.createElement('th');
   th.textContent = '  ';
 
   tr.appendChild(th);
+  // to make the header of hours open
   for (let index = 0; index < timeTotal.length; index++) {
     th = document.createElement('th');
     th.textContent = timeTotal[index][0];
@@ -53,15 +61,18 @@ function Loction(name, min, max, avg) {
   this.cookies = [];
 }
 Loction.prototype.randomCustomers = function() {
+  //  if statment to check if the shop is alrady there or not
   if (this.cookies.length === timeTotal.length) {
     null;
   } else {
+    // if the shop was new will create an avarge cookies for it
     for (let index = 0; index < timeTotal.length; index++) {
       this.cookies.push(getRandomArbitrary(this.min, this.max, this.avg));
     }
   }
 };
 Loction.prototype.render = function() {
+  // invoke the randomCustomers method to fill the array of cookies
   this.randomCustomers();
   var tabel = document.getElementById('tabel');
   var tr = document.createElement('tr');
@@ -90,6 +101,7 @@ new Loction('Dubai', 11, 38, 3.7);
 new Loction('Paris', 20, 38, 2.3);
 new Loction('Lima', 2, 16, 4.6);
 function main() {
+  // this function to render the shops in the array
   var x = document.getElementById('tabel');
   x.parentNode.removeChild(x);
   head();
@@ -119,9 +131,17 @@ function footer() {
   totalTotal = 0;
 }
 footer();
+// this function will invoke for adding and updateing the rows
 function addtr(loction, min, max, avg) {
+  // if to check if min is more then the max
+  if (min > max) {
+    alert('your min should be less then max');
+    return;
+  }
   new Loction(loction, min, max, avg);
+  // call main function to render the new shop
   main();
+  // if to remove the footer of the table and invoked it againg
   var tb = document.getElementById('footer');
   if (tb) {
     tb.parentNode.removeChild(tb);
@@ -129,6 +149,7 @@ function addtr(loction, min, max, avg) {
   }
   footer();
 }
+// function to handel the add form
 var add = document.getElementById('form');
 add.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -136,11 +157,8 @@ add.addEventListener('submit', function(e) {
   var min = e.target.min.value;
   var max = e.target.max.value;
   var avg = e.target.avg.value;
-  if (loction === '' || min === '' || max === '' || avg === '') {
-    alert('there is fileds missing please fill all the info');
-  } else {
-    addtr(loction, min, max, avg);
-  }
+
+  addtr(loction, min, max, avg);
 });
 var update = document.getElementById('update');
 update.addEventListener('submit', function(e) {
@@ -149,12 +167,12 @@ update.addEventListener('submit', function(e) {
   var indexLoction;
   for (let index = 0; index < shops.length; index++) {
     if (eventLoction.originloction.value === shops[index].name) {
-      console.log(eventLoction);
+      // console.log(eventLoction);
       var loc = eventLoction.updateloction.value;
       var min = Number(eventLoction.updatemin.value);
       var max = Number(eventLoction.updatemax.value);
       var avg = Number(eventLoction.updateavg.value);
-      console.log(typeof avg);
+      // console.log(typeof avg);
       if (
         loc !== shops[index].name ||
         min !== shops[index].min ||
@@ -170,12 +188,12 @@ update.addEventListener('submit', function(e) {
         alert('nothing change!');
       }
     }
-    console.log(indexLoction);
+    // console.log(indexLoction);
   }
   if (indexLoction === undefined) {
     alert('the loction dose not exisist');
   }
-  console.log(shops);
+  // console.log(shops);
   // indexLoction
 });
 // console.log(shops[0].name = 'blas')

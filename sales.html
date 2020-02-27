@@ -24,17 +24,17 @@
             <legend>Add shop</legend>
             <div>
                 <label for="loction">Loction</label>
-                <input type="text" id="loction">
+                <input type="text" id="loction" required>
             </div>
             <div>
                 <label for="min">minimum customer visitor</label>
-                <input type="number" id="min"></div>
+                <input type="number" id="min" min="0" required></div>
             <div>
                 <label for="max">maximum customer visitor</label>
-                <input type="number" id="max"></div>
+                <input type="number" id="max" min="0" required></div>
             <div>
                 <label for="avg">Avg cookies for person</label>
-                <input type="number" id="avg"></div>
+                <input type="text" id="avg" min="0" required ></div>
             <input type="submit" value="Add">
         </fieldset>
     </form>
@@ -48,22 +48,22 @@
             <legend>Update shop</legend>
             <div>
                 <label for="originloction">Loction</label>
-                <input type="text" id="originloction">
+                <input type="text" id="originloction" required>
             </div>
             <div>
                 <label for="updateloction">Loction</label>
-                <input type="text" id="updateloction">
+                <input type="text" id="updateloction" required>
             </div>
             <div>
                 <label for="updatemin">minimum customer visitor</label>
-                <input type="number" id="updatemin"></div>
+                <input type="number" min="0" id="updatemin" required></div>
             <div>
                 <label for="updatemax">maximum customer visitor</label>
-                <input type="number" id="updatemax"></div>
+                <input type="number" min="0" id="updatemax" required></div>
             <div>
                 <label for="updateavg">Avg cookies for person</label>
-                <input type="number" id="updateavg"></div>
-            <input type="submit" value="Update">
+                <input type="text" id="updateavg" required></div>
+            <input type="submit" min="0" value="Update">
         </fieldset>
     </form>
     <script src="js/app.js"></script>
