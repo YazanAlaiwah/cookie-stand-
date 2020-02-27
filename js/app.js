@@ -53,7 +53,7 @@ function Loction(name, min, max, avg) {
   this.cookies = [];
 }
 Loction.prototype.randomCustomers = function() {
-  if (this.cookies.length === 14) {
+  if (this.cookies.length === timeTotal.length) {
     null;
   } else {
     for (let index = 0; index < timeTotal.length; index++) {
@@ -81,6 +81,7 @@ Loction.prototype.render = function() {
   td.textContent = this.total;
   tr.appendChild(td);
   tabel.appendChild(tr);
+  this.total = 0;
 };
 
 new Loction('Seattle', 23, 65, 6.3);
@@ -109,11 +110,13 @@ function footer() {
     td = document.createElement('td');
     td.textContent = timeTotal[index][1];
     tr.appendChild(td);
+    timeTotal[index][1] = 0;
   }
   td = document.createElement('td');
   td.textContent = totalTotal;
   tr.appendChild(td);
   tabel.appendChild(tr);
+  totalTotal = 0;
 }
 footer();
 function addtr(loction, min, max, avg) {
@@ -133,8 +136,11 @@ add.addEventListener('submit', function(e) {
   var min = e.target.min.value;
   var max = e.target.max.value;
   var avg = e.target.avg.value;
-
-  addtr(loction, min, max, avg);
+  if (loction === '' || min === '' || max === '' || avg === '') {
+    alert('there is fileds missing please fill all the info');
+  } else {
+    addtr(loction, min, max, avg);
+  }
 });
 var update = document.getElementById('update');
 update.addEventListener('submit', function(e) {
@@ -148,7 +154,7 @@ update.addEventListener('submit', function(e) {
       var min = Number(eventLoction.updatemin.value);
       var max = Number(eventLoction.updatemax.value);
       var avg = Number(eventLoction.updateavg.value);
-      console.log(typeof avg)
+      console.log(typeof avg);
       if (
         loc !== shops[index].name ||
         min !== shops[index].min ||
